@@ -1,2 +1,3 @@
+# 다른언어 말고 dart 만
 * linguist-vendored
 *.dart linguist-vendored=false

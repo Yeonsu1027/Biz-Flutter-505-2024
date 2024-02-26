@@ -1,5 +1,8 @@
 # Flutter & Dart Project
 
+- `flutter` 도구를 이용하여 Cros platform 프로젝트 작성
+- `Android`, `IOS`, `Windows`, `Web`, `MacOS`, `Linux` 운영체제에서 작동되는 프로젝트를 한 번의 코딩으로 작성할 수 있다.
+
 ## SDK 설치
 
 - `https://flutter.dev` 에서 `flutter sdk` 다운로드
@@ -23,3 +26,26 @@
 
 - `dart pub cache repair`
 - `dart pub cache clean`
+
+## Flutter 프로젝트 생성
+
+- `Flutter` 프로젝트는 `vscode` 에 생성하는 명령이 있다.
+- `vscode`를 사용하여 프로젝트를 생성하면 개별폴더로 프로젝트가 open 된다.
+- `cmd`, `shell` 명령으로 프로젝트를 생성한다
+- 생성하는 명령 : `flutter create --org=com.callor [project name]`
+
+## Flutter 프로젝트를 작성하는 과정에서 upgrade
+
+- `flutter` 도구 upgrade
+
+```bash
+flutter pub upgrade outdated : 최신버전 업데이트
+flutter pub upgrade --major-versisions
+flutter clean
+flutter get
+```
+
+- upgrade 과정에서 문제가 발생하는 경우 : 특히 `flutter clean`에 많이
+  오류가 발생한다.
+- `flutter pub cache repair` 를 실행하고 `flutter clean` 를 실행
+- `프로젝트 폴더`의 `build` 폴더를 삭제하고 `flutter clean` 를 실행
