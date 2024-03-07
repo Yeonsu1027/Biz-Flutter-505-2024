@@ -59,22 +59,28 @@ class _MainPageState extends State<MainPage> {
           image: AssetImage(
             "images/tomato.jpg",
           ),
+          // 이미지 전체보여주기
           fit: BoxFit.cover,
         ),
       ),
+      // Scaffold : 앱의 기본 뼈대
       child: Scaffold(
         backgroundColor: Colors.transparent,
         // 메인 페이지위에 홈페이지를 겹쳐둔것
+        // PageView : 슬라이드 형식으로 페이지를 넘길 수 있게함
         body: PageView(
           controller: _pageController,
+          // 수평 스크롤 (좌우로 화면넘김) // 상하 : Axis.vertical
           scrollDirection: Axis.horizontal,
-          // 페이지가 바뀌면 valaue가 pageIndex에 담김
+          // 페이지가 바뀌면 value가 pageIndex에 담김
           onPageChanged: (value) => setState(() => _pageIndex = value),
+          // 이 순서대로 화면나오게 됨
           children: [
             const HomePage(),
             const DashPage(),
-            // onChangeSetting 함수를 onChange 이름으로 전달
             SettingPage(
+            // onChangeSetting 함수를 onChange 이름으로 전달
+            // 3개 넘개 입력하면 입력한게 스낵바로 나옴
               onChange: onChangeSetting,
             ),
           ],
@@ -82,15 +88,19 @@ class _MainPageState extends State<MainPage> {
 
         bottomNavigationBar: BottomNavigationBar(
           // 현재 페이지 번호에따라 아이콘 색상변경
+          //  currentIndex: _pageIndex // 현재 탭의 인덱스지정
           currentIndex: _pageIndex,
           onTap: (value) {
+            // 눌린탭 인덱스_pageIndex 에 저장
             _pageIndex = value;
+            // _pageController 로 해당페이지로 애니메이션으로 넘어감
             _pageController.animateToPage(
               value,
               // 애니메이션기능
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.ease,
+              duration: const Duration(milliseconds: 500), // 0.5초 지속
+              curve: Curves.ease, // 애니메이션 속도
             );
+            // setState 상태를 업데이트하여 위젯을 다시빌드
             setState(() => {});
           },
           items: const [

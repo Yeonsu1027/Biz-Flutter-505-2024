@@ -3,6 +3,8 @@ import 'package:settings_ui/settings_ui.dart';
 
 class SettingPage extends StatefulWidget {
   // required this.onChange : onChange 함수를 반드시 전달 받겠다.
+  // 현재 메인에서 보낸 onChange 는
+  // onChangeSetting: 3개 넘개 입력하면 입력한게 스낵바로 나옴
   const SettingPage({super.key, required this.onChange});
   // state 로 보내기위해 한 번 더 그리고 쓸때는 (아래에) 위젯widget.onChange(value),
   final Function(String) onChange;
