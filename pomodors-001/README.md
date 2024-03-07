@@ -1,16 +1,9 @@
-# timer
+# Flutter timer Project
 
-A new Flutter project.
+- `PageView` 컴포넌트를 사용하여 `Multi View Page App` 을 구현
+- `BottomNavigator`를 이용하여 화면을 전환하면서 보여주기
 
-## Getting Started
+## Setting 화면 구현하기
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- setting ui 도구 dependency 추가하기 : `flutter pub add setting_ui`
+- 날짜 설정 도구 dependency 추가 : `flutter pub add datetime_setting`
