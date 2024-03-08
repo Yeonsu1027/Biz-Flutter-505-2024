@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.workTimer}); // 자동완성되면 this.없으니추가
+  final int workTimer;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -24,14 +25,39 @@ class _HomePageState extends State<HomePage> {
 // timer는 나중에 초기화될 것이며, 초기화 전까지는 사용되지 않을 것이라는 것을 보장
 // Timer 클래스는 Dart에서 일정 시간 후에,
 // 또는 일정 시간 간격으로 작업을 수행하도록 예약하는 데 사용
-// 예를 들어, 특정 작업을 5초 후에 실행하거나, 
+// 예를 들어, 특정 작업을 5초 후에 실행하거나,
 // 매 1초마다 작업을 반복하는 등의 기능을 구현할 때 Timer 클래스를 사용
-  late Timer _timer; 
-  static const int wantTimer = 10;
+  late Timer _timer;
+  // static const int wantTimer = 10;
   // 타이머의 현재 시간을 나타내는 _count 변수를 wantTimer로 초기화
-  int _count = wantTimer;
+
+  // main 으로 부터 전달받은 workTimer
+  // workTimer 는 setting_page 에서 일할시간을 변경하면 그 값을 전달해주는
+  // 전달자 state 이다.
+  // 즉, setting_page 에서 일할시간을 변경하면 timer 의 전체시간이 변경되어야한다.
+  // 일반적인 코드 형식이라면
+  // int _count = workTimer 이라고 한다.
+
+  // 하지만 Flutter의 State<> 에서는
+  // int _count = widget.workTimer 라고 사용을 해야 한다
+  // 문제는 State<> 클래스 영역에서는 widget 을 사용할 수 없다.
+  // 따라서 _count 변수에 workTimer 값을 할당하기 위해서는
+  // 별도의 방법을 사용해야 한다
+
+  //  Flutter 의 State<> 클래스에는 initState() 라는 함수를 사용할 수 있다
+  //  이 함수에서 _count 변수에 widget.workTimer 값을 할당하는
+  //  코드를 사용해야 한다.         = init 내에서 사용해라~
+  int _count = 5;
   // 타이머의 실행 상태
   bool _timerRun = false;
+
+// init 자동완성..
+// State<> class 가 mount 될때 자동으로 실행되는 함수
+  @override
+  void initState() {
+    super.initState();
+    _count = widget.workTimer;
+  }
 
 // 클릭하면 실행상태를 false 에서 반전해서 true 로 바꿔서 실행시키고
   void _onPressed() {
@@ -57,7 +83,7 @@ class _HomePageState extends State<HomePage> {
           // 1미만이되면
           if (_count < 1) {
             // 현재 시간을 다시 wantTimer (10) 으로 초기화
-            _count = wantTimer;
+            _count = widget.workTimer;
             // 카운트 중지
             _timerRun = false;
             // 실행중인 타이머 취소
